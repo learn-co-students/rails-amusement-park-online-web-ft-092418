@@ -11,7 +11,7 @@ class RidesController < ApplicationController
    private
     def valid_ride?
       #if height and tickets is greater than or equal  attraction and tickets
-      @attraction.min_height < current_user.height && @attraction.tickets < current_user.tickets
+      @attraction.min_height <= current_user.height && @attraction.tickets <= current_user.tickets
     end
 
     def ride_the_ride
