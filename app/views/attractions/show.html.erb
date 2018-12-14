@@ -5,4 +5,4 @@
   <%# <%= submit_tag "Go on this ride" %> %>
 <%# <% end %> %> %>
 
-<%= button_to "Go on this ride", rides_path, method:"post" %> 
+<%= button_to "Go on this ride", rides_path, method:"post", params: {"attraction_id" => @attraction.id} %> 

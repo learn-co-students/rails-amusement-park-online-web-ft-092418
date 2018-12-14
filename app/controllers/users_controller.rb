@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def show
     return redirect_to :root unless logged_in?
-    @user = User.find(params[:id])
+    @user = current_user
+  #  @user = User.find(params[:id])
   end
 
   def create
