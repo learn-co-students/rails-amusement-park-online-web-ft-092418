@@ -1,38 +1,37 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
 
-  def create
-    if user_params[:password]
-      user = User.create(user_params)
-      session[:user_id] = user.id
-      redirect_to user_path(user)
-    else
-      redirect_to new_user_path
-    end
-  end
-
   def show
-    @user = User.find(params[:id])
+    return redirect_to :root unless logged_in?
+    @user = current_user
+  #  binding.pry
+  #  @user = User.find(params[:id])
   end
 
-  def index
-
+  def create
+    user = User.create(user_params)
+    session[:user_id] = user.id
+    redirect_to user_path(user)
   end
 
-  def edit
-
+  def signin
+    @user = User.new
   end
 
-  def update
-
+  def logout
+    session.destroy
+    redirect_to :root
   end
 
-  def destroy
-
+  def login
+    user = User.find_by_name(user_params[:name])
+    return redirect_to "/signin" unless user.authenticate(user_params[:password])
+    session[:user_id] = user.id
+    redirect_to user_path(user)
   end
+
 
   def welcome
 
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :happiness, :tickets, :height, :nausea, :password, :admin)
-  end
+    def user_params
+      params.require(:user).permit(:id, :name, :nausea, :happiness, :tickets, :height, :password, :admin)
+    end
 end
