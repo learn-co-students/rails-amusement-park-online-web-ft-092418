@@ -3,7 +3,7 @@ class RidesController < ApplicationController
    def create
      @attraction = Attraction.find(params[:attraction_id])
      ride_the_ride if valid_ride?
-     redirect_to user_path(current_user)
+     render "views/users/show"
    end
 
    private
@@ -13,8 +13,9 @@ class RidesController < ApplicationController
     end
 
     def ride_the_ride
-      current_user.tickets -= @attraction.tickets
-      current_user.save
-      binding.pry
+      user = current_user
+      user.tickets -= @attraction.tickets
+      user.save
+    #  binding.pry
     end
 end
