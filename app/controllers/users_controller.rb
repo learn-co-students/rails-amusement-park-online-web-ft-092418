@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     return redirect_to :root unless logged_in?
     @user = current_user
-    binding.pry
+  #  binding.pry
   #  @user = User.find(params[:id])
   end
 
