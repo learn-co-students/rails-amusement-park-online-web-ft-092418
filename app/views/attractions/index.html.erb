@@ -1,0 +1,4 @@
+<% @attractions.each do |a| %>
+  <%= render partial: "attributes", locals: {attraction: a} %>
+  <%= link_to "Go on #{a.name}", attraction_path(a) %> 
+<% end %>

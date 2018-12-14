@@ -1,0 +1,8 @@
+<%= render partial: "attributes", locals: {attraction: @attraction} %>
+
+<%# <% action: rides_path, method: "post" do %>
+  <%# <%= hidden_field_tag :attraction_id, @attraction.id %> %>
+  <%# <%= submit_tag "Go on this ride" %> %>
+<%# <% end %> %> %>
+
+<%= button_to "Go on this ride", rides_path, method:"post" %> 
