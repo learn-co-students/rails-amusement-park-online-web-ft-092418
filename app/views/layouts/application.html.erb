@@ -28,8 +28,9 @@
     </div>
 
     <!-- content -->
+    <%= content_tag(:div, flash[:message], :id => "flash_message") if flash[:message] %>
+
     <div class="container"  role="main">
       <%= yield %>
     </div>
   </body>
-</html>
